@@ -5,5 +5,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 
 public interface ContactJpaRepository extends JpaRepository<ContactEntity, Long> {
+    boolean existsByNome(String nome);
+    boolean existsByTelefone(String telefone);
+    boolean existsByEmail(String email);
 
 }
