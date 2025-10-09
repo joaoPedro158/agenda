@@ -1,6 +1,4 @@
 package br.ifrn.agenda.model.dto;
 
-
-public class ContatoRecord {
-
+public record ContatoRecord(String nome, String telefone, String email) {
 }

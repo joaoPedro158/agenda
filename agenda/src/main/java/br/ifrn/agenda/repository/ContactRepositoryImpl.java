@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 
 @Repository
 @RequiredArgsConstructor
-public  class ContactRepositoryImpl implements ContactRepository {
+public class ContactRepositoryImpl implements ContactRepository {
 
     private final ContactJpaRepository contactJpaRepository;
 
@@ -18,6 +18,26 @@ public  class ContactRepositoryImpl implements ContactRepository {
     public List<ContatoDTO> findAll() {
 
         return contactJpaRepository.findAll().stream().map(this::parseToDTO).collect(Collectors.toList());
+    }
+
+    @Override
+    public boolean existsByNome(String nome) {
+        return contactJpaRepository.existsByNome(nome);
+    }
+
+    @Override
+    public boolean existsByTelefone(String telefone) {
+        return contactJpaRepository.existsByTelefone(telefone);
+    }
+
+    @Override
+    public boolean existsByEmail(String email) {
+        return contactJpaRepository.existsByEmail(email);
+    }
+
+    @Override
+    public ContactEntity save(ContactEntity entityToSave) {
+        return contactJpaRepository.save(entityToSave);
     }
 
     private ContatoDTO parseToDTO(ContactEntity contactEntity) {
@@ -28,7 +48,4 @@ public  class ContactRepositoryImpl implements ContactRepository {
                 .email(contactEntity.getEmail())
                 .build();
     }
-
-
-
 }
