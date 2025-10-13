@@ -13,6 +13,7 @@ import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Objects;
 
 @Service
 @AllArgsConstructor
@@ -23,6 +24,15 @@ public class ContactServiceImpl implements ContactService {
 
     @Override
     public List<ContatoDTO> getAll() {
+
+        ContatoDTO contatoDTO = ContatoDTO.builder().build();
+
+
+
+        if (contatoDTO.getTelefone() != null) {
+            contatoDTO.getTelefone().toString();
+        }
+
 
         List<ContatoDTO> contatosDTOS = contactRepository.findAll();
 
