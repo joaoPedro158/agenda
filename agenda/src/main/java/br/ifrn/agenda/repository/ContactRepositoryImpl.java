@@ -31,6 +31,16 @@ public class ContactRepositoryImpl implements ContactRepository {
     }
 
     @Override
+    public boolean existsById(Long id) {
+        return contactJpaRepository.existsById(id);
+    }
+
+    @Override
+    public void deleteById(Long id) {
+        contactJpaRepository.deleteById(id);
+    }
+
+    @Override
     public boolean existsByEmail(String email) {
         return contactJpaRepository.existsByEmail(email);
     }

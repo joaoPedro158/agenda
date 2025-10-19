@@ -15,5 +15,9 @@ public interface ContactRepository {
 
     boolean existsByEmail(String email);
 
+    boolean existsById(Long id);
+
+    void deleteById(Long id);
+
     ContactEntity save(ContactEntity entityToSave);
 }

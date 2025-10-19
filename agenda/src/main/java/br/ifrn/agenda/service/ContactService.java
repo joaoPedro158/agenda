@@ -10,4 +10,6 @@ public interface ContactService {
     List<ContatoDTO> getAll();
 
     ContatoDTO saveContact(ContatoRecord contato);
+
+    void deleteContact(Long id);
 }

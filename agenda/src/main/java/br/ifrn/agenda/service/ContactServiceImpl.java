@@ -7,6 +7,7 @@ import br.ifrn.agenda.model.ValidationDataContact;
 import br.ifrn.agenda.model.dto.ContatoDTO;
 import br.ifrn.agenda.model.dto.ContatoRecord;
 import br.ifrn.agenda.model.mapper.ContactMapper;
+import br.ifrn.agenda.repository.ContactJpaRepository;
 import br.ifrn.agenda.repository.ContactRepository;
 import br.ifrn.agenda.repository.entity.ContactEntity;
 import lombok.AllArgsConstructor;
@@ -26,16 +27,10 @@ public class ContactServiceImpl implements ContactService {
     public List<ContatoDTO> getAll() {
 
         ContatoDTO contatoDTO = ContatoDTO.builder().build();
-
-
-
         if (contatoDTO.getTelefone() != null) {
             contatoDTO.getTelefone().toString();
         }
-
-
         List<ContatoDTO> contatosDTOS = contactRepository.findAll();
-
         return contatosDTOS;
     }
 
@@ -58,4 +53,14 @@ public class ContactServiceImpl implements ContactService {
         return mapper.toDTO(savedEntity);
     }
 
+    @Override
+    public void deleteContact(Long id) {
+        if (!contactRepository.existsById(id)) {
+
+            throw new RuntimeException("Contato não encontrado com ID: " + id);
+        }
+
+        contactRepository.deleteById(id);
+    }
 }
+

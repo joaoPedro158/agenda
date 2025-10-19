@@ -9,10 +9,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping(RotaContatos.ROOT)
@@ -35,9 +32,16 @@ public class ContactController {
  @PostMapping(value= RotasBase.FORM,
             consumes = MediaType.APPLICATION_JSON_VALUE,
             produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity saveContacts(@RequestBody ContatoRecord contact) {
+ public ResponseEntity saveContacts(@RequestBody ContatoRecord contact) {
 
-        return ResponseEntity.ok(contactService.saveContact(contact));
-    }
+     return ResponseEntity.ok(contactService.saveContact(contact));
+ }
+
+ @DeleteMapping(RotasBase.DELETE)
+ public ResponseEntity<Void> deleteContact(@PathVariable Long id) {
+     contactService.deleteContact(id);
+     return ResponseEntity.ok().build(); // Retorna 200 OK sem corpo
+ }
+
 
 }

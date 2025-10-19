@@ -8,7 +8,7 @@ public interface RotasBase {
 
     String EDIT = "/edit";
 
-    String DELETE = "/delete";
+    String DELETE = "/delete/{id}";
 
     String VIEW = "/view";
 
